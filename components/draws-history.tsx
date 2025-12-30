@@ -23,6 +23,7 @@ import { fr } from "date-fns/locale";
 import { sortRoomsByHierarchy } from "@/lib/room-hierarchy";
 import { deleteDrawsByDate } from "@/app/actions/import-draws";
 import { toast } from "sonner";
+import { getNumberColor } from "@/lib/number-colors";
 
 const ITEMS_PER_PAGE = 10; // Dates per page
 
@@ -190,8 +191,9 @@ export function DrawsHistory() {
                             {room.winning_numbers.map((num, numIdx) => (
                               <Badge
                                 key={numIdx}
-                                variant="default"
-                                className="bg-green-600 hover:bg-green-700 text-white text-xs px-2 py-0.5 rounded-sm"
+                                className={`${getNumberColor(
+                                  num
+                                )} text-xs px-2 py-0.5 rounded-sm font-semibold`}
                               >
                                 {num}
                               </Badge>
@@ -209,8 +211,9 @@ export function DrawsHistory() {
                               {room.machine_numbers.map((num, numIdx) => (
                                 <Badge
                                   key={numIdx}
-                                  variant="destructive"
-                                  className="text-xs px-2 py-0.5 rounded-sm"
+                                  className={`${getNumberColor(
+                                    num
+                                  )} text-xs px-2 py-0.5 rounded-sm font-semibold opacity-80`}
                                 >
                                   {num}
                                 </Badge>
